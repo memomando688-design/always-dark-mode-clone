@@ -29,7 +29,38 @@ export const Route = createFileRoute("/projects/$id")({
         { name: "twitter:description", content: description },
       ],
       links: [{ rel: "canonical", href: `/projects/${params.id}` }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            name: project?.title || "Project",
+            description,
+            url: `/projects/${params.id}`,
+            creator: { "@type": "Person", name: "Mostafa Samir" },
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+              { "@type": "ListItem", position: 2, name: "Projects", item: "/projects" },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: project?.title || "Project",
+                item: `/projects/${params.id}`,
+              },
+            ],
+          }),
+        },
+      ],
     };
+
   },
 
   component: ProjectDetail,

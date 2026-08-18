@@ -35,10 +35,31 @@ export const Route = createFileRoute("/projects/")({
           "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/projects" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "All Projects | Marketplace Systems Architect" },
+      {
+        name: "twitter:description",
+        content:
+          "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems.",
+      },
     ],
     links: [{ rel: "canonical", href: "/projects" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "All Projects",
+          description:
+            "Browse every project: multi-vendor marketplaces, e-commerce platforms and high-scale systems.",
+          url: "/projects",
+        }),
+      },
+    ],
   }),
+
   component: ProjectsPage,
   pendingComponent: PageSkeleton,
 });

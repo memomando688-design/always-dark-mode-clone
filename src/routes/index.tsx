@@ -26,16 +26,41 @@ export const Route = createFileRoute("/")({
           "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices and Next.js marketplaces.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
-
+      { name: "twitter:title", content: "Mostafa Samir | Senior Full Stack Engineer" },
+      {
+        name: "twitter:description",
+        content:
+          "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices and Next.js marketplaces.",
+      },
     ],
     links: [
       { rel: "canonical", href: "/" },
       { rel: "preload", as: "image", href: heroIso, fetchPriority: "high" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Mostafa Samir",
+          jobTitle: "Senior Full Stack Engineer",
+          url: "/",
+          knowsAbout: [
+            ".NET 8 microservices",
+            "Next.js",
+            "Multi-vendor marketplaces",
+            "Real-time bidding systems",
+          ],
+        }),
+      },
+    ],
   }),
   component: Index,
 });
+
 
 function Index() {
   return (

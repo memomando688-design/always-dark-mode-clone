@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
+import { Reveal } from "@/components/ui/Reveal";
 import { Code2, ExternalLink, Rocket } from "lucide-react";
 import { projects } from "@/data";
 import { SmartImage } from "@/components/ui/SmartImage";
@@ -28,12 +28,9 @@ export function Projects() {
             const tags = project.tech.slice(0, 3);
 
             return (
-              <motion.div
+              <Reveal
                 key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                delay={index * 0.1}
                 className="relative flex flex-col justify-between rounded-2xl bg-card p-7 border border-border shadow-[var(--shadow-glow)] group hover:-translate-y-2 transition-all duration-300"
               >
                 <div>
@@ -111,7 +108,7 @@ export function Projects() {
                     <ArrowRightIcon className="size-3 text-foreground group-hover/btn:text-primary transition-colors group-hover/btn:translate-x-1 rtl:rotate-180" />
                   </Link>
                 </div>
-              </motion.div>
+              </Reveal>
             );
           })}
         </div>

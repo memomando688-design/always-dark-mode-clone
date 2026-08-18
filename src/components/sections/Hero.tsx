@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Play, Trophy } from "lucide-react";
 import heroIso from "@/assets/hero-iso.webp";
 import { useI18n } from "@/lib/i18n";
@@ -12,34 +11,27 @@ export function Hero() {
         {/* Left Column Text & Action */}
         <div className="relative z-10 text-center lg:text-start">
           {/* Eyebrow Label */}
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 font-sans text-xs font-black tracking-[0.35em] text-primary uppercase"
+          <p
+            className="enter-up mb-4 font-sans text-xs font-black tracking-[0.35em] text-primary uppercase"
           >
             {tr("hero.eyebrow")}
-          </motion.p>
+          </p>
 
           {/* Large Oswald Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.08 }}
-            className="font-display text-[64px] sm:text-[84px] md:text-[104px] font-bold uppercase leading-[0.85] text-foreground tracking-normal"
+          <h1
+            style={{ animationDelay: "0.08s" }}
+            className="enter-up font-display text-[64px] sm:text-[84px] md:text-[104px] font-bold uppercase leading-[0.85] text-foreground tracking-normal"
           >
             {tr("hero.name.first")}
             <br />
             {tr("hero.name.last")}
             <span className="sr-only"> — {tr("hero.subtitle")}</span>
-          </motion.h1>
+          </h1>
 
           {/* Subtitle & Trophy Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.18 }}
-            className="mt-6 flex flex-col items-center lg:items-start gap-4"
+          <div
+            style={{ animationDelay: "0.18s" }}
+            className="enter-up mt-6 flex flex-col items-center lg:items-start gap-4"
           >
             <div className="flex items-center gap-3">
               <p className="max-w-md text-sm sm:text-base font-medium leading-snug text-foreground/90 text-center lg:text-start">
@@ -62,15 +54,13 @@ export function Hero() {
                 {tr("hero.cta")}
               </span>
             </a>
-          </motion.div>
+          </div>
         </div>
 
         {/* Right Column: 3D Isometric Art */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.1, ease: [0.21, 0.5, 0.3, 1] }}
-          className="relative"
+        <div
+          style={{ animationDelay: "0.1s" }}
+          className="enter-up relative"
         >
           <img
             src={heroIso}
@@ -83,7 +73,7 @@ export function Hero() {
             draggable={false}
             className="mx-auto w-full max-w-xl md:max-w-2xl animate-float drop-shadow-2xl"
           />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

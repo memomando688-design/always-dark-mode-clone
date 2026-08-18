@@ -119,10 +119,16 @@ export const t: Dict = {
 
   "project.detail.backAll": { en: "Back to all projects", ar: "العودة إلى كل المشاريع" },
 
-  "events.title": { en: "Conferences & Events", ar: "المؤتمرات والفعاليات" },
-  "events.tab.interviews": { en: "INTERVIEWS", ar: "مقابلات" },
-  "events.tab.talks": { en: "TALKS", ar: "محاضرات" },
-  "events.tab.exhibition": { en: "EXHIBITION", ar: "معارض" },
+  "events.title": { en: "Career Highlights", ar: "أبرز المحطات المهنية" },
+  "events.desc": {
+    en: "A timeline of the roles I've held, the platforms I've shipped, and the credentials behind them.",
+    ar: "خط زمني للأدوار التي توليتها، والمنصات التي أطلقتها، والمؤهلات التي تدعمها.",
+  },
+  "events.tab.work": { en: "EXPERIENCE", ar: "الخبرة" },
+  "events.tab.projects": { en: "PLATFORMS", ar: "المنصات" },
+  "events.tab.education": { en: "EDUCATION", ar: "التعليم" },
+  "events.empty": { en: "Nothing here yet.", ar: "لا يوجد شيء هنا بعد." },
+  "events.cta": { en: "VIEW FULL EXPERIENCE", ar: "عرض الخبرة الكاملة" },
 
   "about.page.eyebrow": { en: "SENIOR FULL STACK ENGINEER", ar: "مهندس برمجيات متكامل أول" },
   "about.page.title": { en: "About Mostafa Samir", ar: "نبذة عن مصطفى سمير" },

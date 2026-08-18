@@ -31,16 +31,17 @@ export function useSmoothScroll() {
       };
     };
 
-    const idle: typeof requestIdleCallback | undefined = window.requestIdleCallback;
-    const handle = idle
-      ? idle(() => void start(), { timeout: 2000 })
+    const hasIdle = typeof window.requestIdleCallback === "function";
+    const handle = hasIdle
+      ? window.requestIdleCallback(() => void start(), { timeout: 2000 })
       : window.setTimeout(() => void start(), 1200);
 
     return () => {
       cancelled = true;
-      if (idle && window.cancelIdleCallback) window.cancelIdleCallback(handle as number);
-      else clearTimeout(handle as number);
+      if (hasIdle) window.cancelIdleCallback(handle);
+      else clearTimeout(handle);
       cleanup?.();
     };
+
   }, []);
 }

@@ -69,9 +69,15 @@ function Index() {
       <main>
         <Hero />
         <Projects />
-        <ExperiencePreview />
-        <AboutPreview />
-        <Testimonials />
+        <div className="defer-paint">
+          <ExperiencePreview />
+        </div>
+        <div className="defer-paint">
+          <AboutPreview />
+        </div>
+        <div className="defer-paint">
+          <Testimonials />
+        </div>
       </main>
       <Footer />
     </div>

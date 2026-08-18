@@ -1,4 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { PageSkeleton } from "@/components/ui/Skeletons";
 import { ArrowRight, Code, Database, Cpu, Lock } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -47,6 +48,7 @@ export const Route = createFileRoute("/skills")({
     ],
     links: [{ rel: "canonical", href: "/skills" }],
   }),
+  pendingComponent: PageSkeleton,
   component: SkillsPage,
 });
 

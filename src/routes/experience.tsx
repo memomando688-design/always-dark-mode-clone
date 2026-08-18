@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageSkeleton } from "@/components/ui/Skeletons";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ExperiencePreview } from "@/components/sections/home/ExperiencePreview";
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/experience")({
     ],
     links: [{ rel: "canonical", href: "/experience" }],
   }),
+  pendingComponent: PageSkeleton,
   component: ExperiencePage,
 });
 

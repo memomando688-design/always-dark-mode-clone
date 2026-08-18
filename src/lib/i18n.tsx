@@ -119,10 +119,16 @@ export const t: Dict = {
 
   "project.detail.backAll": { en: "Back to all projects", ar: "العودة إلى كل المشاريع" },
 
-  "events.title": { en: "Conferences & Events", ar: "المؤتمرات والفعاليات" },
-  "events.tab.interviews": { en: "INTERVIEWS", ar: "مقابلات" },
-  "events.tab.talks": { en: "TALKS", ar: "محاضرات" },
-  "events.tab.exhibition": { en: "EXHIBITION", ar: "معارض" },
+  "events.title": { en: "Career Highlights", ar: "أبرز المحطات المهنية" },
+  "events.desc": {
+    en: "A timeline of the roles I've held, the platforms I've shipped, and the credentials behind them.",
+    ar: "خط زمني للأدوار التي توليتها، والمنصات التي أطلقتها، والمؤهلات التي تدعمها.",
+  },
+  "events.tab.work": { en: "EXPERIENCE", ar: "الخبرة" },
+  "events.tab.projects": { en: "PLATFORMS", ar: "المنصات" },
+  "events.tab.education": { en: "EDUCATION", ar: "التعليم" },
+  "events.empty": { en: "Nothing here yet.", ar: "لا يوجد شيء هنا بعد." },
+  "events.cta": { en: "VIEW FULL EXPERIENCE", ar: "عرض الخبرة الكاملة" },
 
   "about.page.eyebrow": { en: "SENIOR FULL STACK ENGINEER", ar: "مهندس برمجيات متكامل أول" },
   "about.page.title": { en: "About Mostafa Samir", ar: "نبذة عن مصطفى سمير" },
@@ -222,18 +228,33 @@ export const t: Dict = {
   "projects.sort.category": { en: "Category", ar: "التصنيف" },
   "projects.sort.tech": { en: "Most tech", ar: "الأكثر تقنيات" },
 
-  "events.item.we3ds.name": { en: "WE3DS Company", ar: "شركة WE3DS" },
-  "events.item.we3ds.location": { en: "Tanta, EG", ar: "طنطا، مصر" },
-  "events.item.we3ds.topic": { en: "Senior Full Stack Developer", ar: "مطوّر متكامل أول" },
-  "events.item.freelance.name": { en: "Freelance Marketplace", ar: "أسواق العمل الحر" },
-  "events.item.freelance.location": { en: "Cairo, EG", ar: "القاهرة، مصر" },
-  "events.item.freelance.topic": { en: "Full Stack Developer", ar: "مطوّر متكامل" },
-  "events.item.platform.name": { en: "Multi-Tenant Platform", ar: "منصة متعددة المستأجرين" },
-  "events.item.platform.location": { en: "Enterprise, EG", ar: "قطاع المؤسسات، مصر" },
-  "events.item.platform.topic": { en: "300% Speed Optimization", ar: "تحسين السرعة بنسبة 300%" },
-  "events.item.degree.name": { en: "Computer Science B.Sc.", ar: "بكالوريوس علوم الحاسب" },
-  "events.item.degree.location": { en: "HTI University, EG", ar: "معهد HTI، مصر" },
-  "events.item.degree.topic": { en: "Degree Credential", ar: "مؤهل أكاديمي" },
+  "events.item.we3ds.name": { en: "Senior Software Developer", ar: "مطوّر برمجيات أول" },
+  "events.item.we3ds.location": { en: "WE3DS Company · Tanta, EG", ar: "شركة WE3DS · طنطا، مصر" },
+  "events.item.we3ds.topic": { en: ".NET 8 Microservices, DDD, SignalR", ar: "خدمات .NET 8 المصغّرة وDDD وSignalR" },
+
+  "events.item.freelance.name": { en: "Full Stack Developer (Freelance)", ar: "مطوّر متكامل (عمل حر)" },
+  "events.item.freelance.location": { en: "Self-Employed · Cairo, EG", ar: "عمل حر · القاهرة، مصر" },
+  "events.item.freelance.topic": { en: "React & .NET Core delivery for clients", ar: "تسليم مشاريع React و.NET Core للعملاء" },
+
+  "events.item.platform.name": { en: "Multi-Tenant Marketplace Platform", ar: "منصة أسواق متعددة المستأجرين" },
+  "events.item.platform.location": { en: "Enterprise · Production", ar: "قطاع المؤسسات · بيئة إنتاج" },
+  "events.item.platform.topic": { en: "300% faster queries with Redis caching", ar: "استعلامات أسرع بنسبة 300% مع تخزين Redis" },
+
+  "events.item.iot.name": { en: "Real-Time IoT Telemetry Layer", ar: "طبقة قياس عن بُعد لإنترنت الأشياء" },
+  "events.item.iot.location": { en: "WE3DS · Production", ar: "WE3DS · بيئة إنتاج" },
+  "events.item.iot.topic": { en: "1000+ live endpoints over SignalR", ar: "أكثر من 1000 نقطة اتصال حيّة عبر SignalR" },
+
+  "events.item.devops.name": { en: "CI/CD Automation Pipeline", ar: "خط أتمتة CI/CD" },
+  "events.item.devops.location": { en: "Azure DevOps · Docker", ar: "Azure DevOps · Docker" },
+  "events.item.devops.topic": { en: "Shorter, repeatable release cycles", ar: "دورات إصدار أقصر وقابلة للتكرار" },
+
+  "events.item.degree.name": { en: "B.Sc. Computer Science", ar: "بكالوريوس علوم الحاسب" },
+  "events.item.degree.location": { en: "HTI University · Egypt", ar: "معهد HTI · مصر" },
+  "events.item.degree.topic": { en: "Software engineering & databases", ar: "هندسة البرمجيات وقواعد البيانات" },
+
+  "events.item.arch.name": { en: "Clean Architecture & DDD Practice", ar: "تطبيق Clean Architecture وDDD" },
+  "events.item.arch.location": { en: "Self-Study · Applied at work", ar: "تعلّم ذاتي · مطبّق في العمل" },
+  "events.item.arch.topic": { en: "CQRS, MediatR, unit testing", ar: "CQRS وMediatR واختبارات الوحدة" },
 };
 
 

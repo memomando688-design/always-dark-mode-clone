@@ -1,97 +1,130 @@
-import { useState } from "react";
-import { MapPin, MessageSquare, ChevronRight, ArrowRight } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { Building2, Layers, GraduationCap, ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
-const eventsData = [
-  { id: "we3ds", year: "2024", iconText: "⚡" },
-  { id: "freelance", year: "2023", iconText: "AR" },
-  { id: "platform", year: "2024", iconText: "●", featured: true },
-  { id: "degree", year: "2021", iconText: "❖" },
+type TabId = "work" | "projects" | "education";
+
+interface HighlightItem {
+  id: string;
+  year: string;
+  tab: TabId;
+  featured?: boolean;
+}
+
+const highlights: HighlightItem[] = [
+  { id: "we3ds", year: "2024", tab: "work", featured: true },
+  { id: "freelance", year: "2023", tab: "work" },
+  { id: "platform", year: "2025", tab: "projects", featured: true },
+  { id: "iot", year: "2024", tab: "projects" },
+  { id: "devops", year: "2024", tab: "projects" },
+  { id: "degree", year: "2021", tab: "education", featured: true },
+  { id: "arch", year: "2022", tab: "education" },
+];
+
+const tabs: { id: TabId; Icon: typeof Building2 }[] = [
+  { id: "work", Icon: Building2 },
+  { id: "projects", Icon: Layers },
+  { id: "education", Icon: GraduationCap },
 ];
 
 export function ExperiencePreview() {
-  const [activeTab, setActiveTab] = useState("TALKS");
+  const [activeTab, setActiveTab] = useState<TabId>("work");
   const { tr } = useI18n();
 
+  const items = useMemo(() => highlights.filter((h) => h.tab === activeTab), [activeTab]);
+  const ActiveIcon = tabs.find((t) => t.id === activeTab)!.Icon;
+
   return (
-    <section id="events" className="w-full bg-background py-20 px-4 sm:px-8 md:px-12 text-foreground select-none">
+    <section id="events" className="w-full bg-background py-20 px-4 sm:px-8 md:px-12 text-foreground">
       <div className="mx-auto max-w-5xl">
-        {/* Title */}
-        <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-center text-foreground mb-8 tracking-tight">
+        <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-center tracking-tight">
           {tr("events.title")}
         </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-sm sm:text-base text-muted-foreground">
+          {tr("events.desc")}
+        </p>
 
-        {/* Filter Tabs */}
-        <div className="flex items-center justify-center gap-3 mb-12">
-          {["INTERVIEWS", "TALKS", "EXHIBITION"].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`rounded-xl px-6 py-2.5 font-sans text-xs font-black tracking-[0.2em] uppercase transition-all ${
-                activeTab === tab
-                  ? "bg-foreground text-background shadow-md scale-105"
-                  : "bg-foreground/10 text-foreground border border-border hover:bg-foreground/20"
-              }`}
-            >
-              {tr(`events.tab.${tab.toLowerCase()}`)}
-            </button>
-          ))}
+        {/* Tabs */}
+        <div role="tablist" aria-label={tr("events.title")} className="mt-10 mb-10 flex flex-wrap items-center justify-center gap-3">
+          {tabs.map(({ id, Icon }) => {
+            const active = activeTab === id;
+            return (
+              <button
+                key={id}
+                role="tab"
+                aria-selected={active}
+                onClick={() => setActiveTab(id)}
+                className={`inline-flex items-center gap-2 whitespace-nowrap rounded-xl px-5 py-2.5 font-sans text-xs font-black uppercase tracking-[0.18em] transition-all ${
+                  active
+                    ? "bg-foreground text-background shadow-md"
+                    : "border border-border bg-foreground/5 text-foreground hover:bg-foreground/15"
+                }`}
+              >
+                <Icon className="size-3.5" />
+                {tr(`events.tab.${id}`)}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Event Rows */}
+        {/* Rows */}
         <div className="flex flex-col gap-4">
-          {eventsData.map(({ id, year, iconText, featured }) => (
-            <div
+          {items.length === 0 && (
+            <p className="text-center text-sm text-muted-foreground">{tr("events.empty")}</p>
+          )}
+
+          {items.map(({ id, year, featured }) => (
+            <article
               key={id}
-              className={`flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl transition-all duration-300 ${
+              className={`flex flex-col gap-4 rounded-2xl p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6 transition-all duration-300 ${
                 featured
-                  ? "bg-foreground text-background shadow-[var(--shadow-glow)] scale-[1.02]"
-                  : "bg-card text-card-foreground border border-border shadow-md hover:bg-card/90"
+                  ? "bg-foreground text-background shadow-[var(--shadow-glow)]"
+                  : "border border-border bg-card text-card-foreground shadow-md hover:bg-card/90"
               }`}
             >
-              <div className="flex items-center gap-6 sm:gap-8 w-full sm:w-auto">
-                <span dir="ltr" className="font-['Oswald',sans-serif] text-sm font-bold opacity-80 min-w-10">
+              <div className="flex items-center gap-5 sm:gap-7">
+                <span dir="ltr" className="min-w-10 font-['Oswald',sans-serif] text-sm font-bold opacity-80">
                   {year}
                 </span>
 
                 <div
-                  className={`grid size-10 place-items-center rounded-xl font-black text-sm ${
-                    featured ? "bg-primary text-primary-foreground" : "bg-foreground/15 text-primary"
+                  className={`grid size-10 shrink-0 place-items-center rounded-xl ${
+                    featured ? "bg-primary text-primary-foreground" : "bg-foreground/10 text-primary"
                   }`}
                 >
-                  {iconText}
+                  <ActiveIcon className="size-4" />
                 </div>
 
-                <h3
-                  className={`font-['Oswald',sans-serif] text-xl sm:text-2xl font-bold tracking-tight ${
-                    featured ? "text-background" : "text-card-foreground"
-                  }`}
-                >
-                  {tr(`events.item.${id}.name`)}
-                </h3>
+                <div className="min-w-0">
+                  <h3 className="font-['Oswald',sans-serif] text-lg sm:text-xl font-bold leading-tight tracking-tight">
+                    {tr(`events.item.${id}.name`)}
+                  </h3>
+                  <p className={`mt-1 text-xs font-semibold ${featured ? "opacity-80" : "text-muted-foreground"}`}>
+                    {tr(`events.item.${id}.location`)}
+                  </p>
+                </div>
               </div>
 
-              <div className="flex items-center gap-6 sm:gap-8 w-full sm:w-auto justify-between sm:justify-end">
-                <div className="flex items-center gap-1.5 text-xs font-bold opacity-90">
-                  <MapPin className="size-3.5 text-primary" />
-                  <span>{tr(`events.item.${id}.location`)}</span>
-                </div>
-
-                <div className="flex items-center gap-1.5 text-xs font-bold opacity-90">
-                  <MessageSquare className="size-3.5 text-primary" />
-                  <span>{tr(`events.item.${id}.topic`)}</span>
-                </div>
-
-                {featured ? (
-                  <button aria-label={tr(`events.item.${id}.topic`)} className="grid size-10 place-items-center rounded-xl bg-primary text-primary-foreground shadow-sm hover:scale-105 transition-transform">
-                    <ArrowRight className="size-4 stroke-[3] rtl:rotate-180" />
-                  </button>
-                ) : (
-                  <ChevronRight className="size-5 opacity-60 rtl:rotate-180" />
-                )}
-              </div>
-            </div>
+              <p
+                className={`text-xs font-bold sm:max-w-[18rem] sm:text-end ${
+                  featured ? "opacity-90" : "text-muted-foreground"
+                }`}
+              >
+                {tr(`events.item.${id}.topic`)}
+              </p>
+            </article>
           ))}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link
+            to="/experience"
+            className="inline-flex items-center gap-2 rounded-xl border border-border bg-foreground/5 px-6 py-3 font-sans text-xs font-black uppercase tracking-[0.18em] transition-colors hover:bg-foreground/15"
+          >
+            {tr("events.cta")}
+            <ArrowRight className="size-3.5 rtl:rotate-180" />
+          </Link>
         </div>
       </div>
     </section>

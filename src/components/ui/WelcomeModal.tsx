@@ -114,29 +114,21 @@ export function WelcomeModal() {
             {tr("welcome.highlight")}
           </p>
 
-          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="mt-8 grid grid-cols-1 gap-3">
             <Link
               to="/contact"
               onClick={close}
-              className="btn-accent min-h-[5.5rem] flex-col gap-1 py-4 text-sm leading-tight"
+              className="btn-accent w-full items-center justify-center gap-2 whitespace-nowrap py-4 text-sm"
             >
-              {tr("welcome.primary")
-                .split(" ")
-                .map((word) => (
-                  <span key={word}>{word}</span>
-                ))}
-              <ArrowRight className="mt-1 h-4 w-4 rtl:rotate-180" />
+              {tr("welcome.primary")}
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
             <Link
               to="/projects"
               onClick={close}
-              className="btn-accent-outline min-h-[5.5rem] flex-col gap-1 py-4 text-sm leading-tight"
+              className="btn-accent-outline w-full items-center justify-center gap-2 whitespace-nowrap py-4 text-sm"
             >
-              {tr("welcome.secondary")
-                .split(" ")
-                .map((word) => (
-                  <span key={word}>{word}</span>
-                ))}
+              {tr("welcome.secondary")}
             </Link>
           </div>
 

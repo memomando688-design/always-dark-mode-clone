@@ -6,16 +6,51 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
-import { Toaster } from "sonner";
+import { Suspense, lazy, useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { describeError } from "@/lib/error-capture";
 import { ThemeProvider, themeBootstrapScript } from "@/lib/theme";
-import { I18nProvider, langBootstrapScript } from "@/lib/i18n";
+import { I18nProvider, langBootstrapScript, useI18n } from "@/lib/i18n";
 import { useSmoothScroll } from "@/lib/smooth-scroll";
-import { WelcomeModal } from "@/components/ui/WelcomeModal";
-import { NotFound as NotFoundComponent } from "@/components/sections/NotFound";
+import { PageSkeleton } from "@/components/ui/Skeletons";
+
+// Client-only chrome and the rarely-hit 404 screen are pulled out of the
+// initial bundle so the first route paints with the smallest possible JS.
+const WelcomeModal = lazy(() =>
+  import("@/components/ui/WelcomeModal").then((m) => ({ default: m.WelcomeModal })),
+);
+const Toaster = lazy(() => import("sonner").then((m) => ({ default: m.Toaster })));
+const NotFoundScreen = lazy(() =>
+  import("@/components/sections/NotFound").then((m) => ({ default: m.NotFound })),
+);
+
+function NotFoundComponent() {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <NotFoundScreen />
+    </Suspense>
+  );
+}
+
+/** Arabic webfonts are only fetched once the UI actually switches to Arabic. */
+function ArabicFonts() {
+  const { lang } = useI18n();
+
+  useEffect(() => {
+    if (lang !== "ar") return;
+    const href =
+      "https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Tajawal:wght@400;700&display=swap";
+    if (document.querySelector(`link[href="${href}"]`)) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.head.appendChild(link);
+  }, [lang]);
+
+  return null;
+}
+
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   // Use error-capture's describeError to properly format error details

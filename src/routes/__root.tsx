@@ -161,17 +161,26 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   useSmoothScroll();
+  // Overlay chrome is mounted after hydration so it never blocks first paint.
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <I18nProvider>
-          <Toaster position="bottom-right" richColors />
-          <WelcomeModal />
+          <ArabicFonts />
+          {hydrated && (
+            <Suspense fallback={null}>
+              <Toaster position="bottom-right" richColors />
+              <WelcomeModal />
+            </Suspense>
+          )}
           {/* Required: nested routes render here. */}
           <Outlet />
         </I18nProvider>
       </ThemeProvider>
     </QueryClientProvider>
+
   );
 }

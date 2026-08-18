@@ -19,10 +19,12 @@ export const t: Dict = {
   "hero.name.first": { en: "MOSTAFA", ar: "مصطفى" },
   "hero.name.last": { en: "SAMIR", ar: "سمير" },
   "hero.subtitle": {
-    en: "Senior Full Stack Engineer with 4+ years specializing in high-performance .NET 8 Microservices & Next.js Marketplaces.",
-    ar: "مهندس متكامل أول بخبرة تزيد عن 4 سنوات، متخصص في الخدمات المصغرة عالية الأداء باستخدام .NET 8 ومنصات التجارة الإلكترونية بـ Next.js.",
+    en: "Senior Full Stack Engineer with 4+ years specializing in high-performance .NET 8 Microservices & React.js / Angular platforms.",
+    ar: "مهندس متكامل أول بخبرة تزيد عن 4 سنوات، متخصص في الخدمات المصغرة عالية الأداء باستخدام .NET 8 وواجهات React.js و Angular.",
   },
   "hero.cta": { en: "VIEW MY WORK", ar: "شاهد أعمالي" },
+  "hero.cv": { en: "DOWNLOAD CV", ar: "تحميل السيرة" },
+
 
   "about.preview.title1": { en: "4+ Years of", ar: "4+ سنوات من" },
   "about.preview.title2": { en: "Full Stack Excellence", ar: "التميز التقني" },

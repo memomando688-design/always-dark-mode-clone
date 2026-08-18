@@ -17,13 +17,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices and Next.js marketplaces.",
+          "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices, React.js and Angular platforms.",
       },
       { property: "og:title", content: "Mostafa Samir | Senior Full Stack Engineer" },
       {
         property: "og:description",
         content:
-          "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices and Next.js marketplaces.",
+          "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices, React.js and Angular platforms.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
       {
         name: "twitter:description",
         content:
-          "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices and Next.js marketplaces.",
+          "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices, React.js and Angular platforms.",
       },
     ],
     links: [

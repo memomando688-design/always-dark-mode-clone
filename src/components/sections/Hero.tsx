@@ -1,4 +1,4 @@
-import { Play, Trophy } from "lucide-react";
+import { Download, Play, Trophy } from "lucide-react";
 import heroIso from "@/assets/hero-iso.webp";
 import { useI18n } from "@/lib/i18n";
 
@@ -42,18 +42,34 @@ export function Hero() {
               </div>
             </div>
 
-            {/* LEARN MORE CTA Button */}
-            <a
-              href="#works"
-              className="group inline-flex items-center gap-3 rounded-xl bg-card px-7 py-3.5 shadow-lg border border-border transition-all duration-300 hover:scale-105 hover:shadow-xl mt-4"
-            >
-              <span className="grid size-7 place-items-center rounded-xl bg-primary text-primary-foreground shadow-sm transition-transform duration-300 group-hover:rotate-12">
-                <Play className={`size-3.5 fill-primary-foreground text-primary-foreground ${dir === 'rtl' ? 'me-0.5 rotate-180' : 'ms-0.5'}`} />
-              </span>
-              <span className="font-sans text-xs font-black tracking-[0.2em] text-card-foreground uppercase">
-                {tr("hero.cta")}
-              </span>
-            </a>
+            {/* Primary actions: view work + download CV, inline on one line */}
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+              <a
+                href="#works"
+                className="group inline-flex items-center gap-3 rounded-xl bg-card px-7 py-3.5 shadow-lg border border-border transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              >
+                <span className="grid size-7 place-items-center rounded-xl bg-primary text-primary-foreground shadow-sm transition-transform duration-300 group-hover:rotate-12">
+                  <Play className={`size-3.5 fill-primary-foreground text-primary-foreground ${dir === 'rtl' ? 'me-0.5 rotate-180' : 'ms-0.5'}`} />
+                </span>
+                <span className="whitespace-nowrap font-sans text-xs font-black tracking-[0.2em] text-card-foreground uppercase">
+                  {tr("hero.cta")}
+                </span>
+              </a>
+
+              <a
+                href="/cv/Mostafa_Samir_CV.pdf"
+                download="Mostafa_Samir_CV.pdf"
+                type="application/pdf"
+                className="group inline-flex items-center gap-3 rounded-xl bg-primary px-7 py-3.5 shadow-lg border border-primary transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              >
+                <span className="grid size-7 place-items-center rounded-xl bg-primary-foreground/15 text-primary-foreground transition-transform duration-300 group-hover:translate-y-0.5">
+                  <Download className="size-3.5" />
+                </span>
+                <span className="whitespace-nowrap font-sans text-xs font-black tracking-[0.2em] text-primary-foreground uppercase">
+                  {tr("hero.cv")}
+                </span>
+              </a>
+            </div>
           </div>
         </div>
 

@@ -103,9 +103,12 @@ export function WelcomeModal() {
         onClick={(event) => event.stopPropagation()}
         onMouseEnter={hold}
         onMouseLeave={release}
-        onFocus={hold}
-        onBlur={release}
+        onFocusCapture={(event) => {
+          // Ignore the initial programmatic focus on the close button.
+          if (event.target !== closeRef.current) hold();
+        }}
         onTouchStart={hold}
+        onTouchEnd={release}
         className="relative w-full max-w-[min(100%,34rem)] overflow-hidden rounded-2xl border border-border bg-card shadow-2xl animate-scale-in md:max-w-3xl"
       >
         <div className="grid-bg pointer-events-none absolute inset-0 opacity-40" />

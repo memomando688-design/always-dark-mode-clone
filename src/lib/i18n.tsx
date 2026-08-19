@@ -127,6 +127,9 @@ const t: Dict = {
     ar: "بلا ضغط — رد خلال 24 ساعة.",
   },
   "welcome.close": { en: "Close welcome message", ar: "إغلاق رسالة الترحيب" },
+  "welcome.autoclose": { en: "Closing in {s}s", ar: "الإغلاق بعد {s} ثانية" },
+  "welcome.paused": { en: "Paused", ar: "متوقف مؤقتاً" },
+
 
   "footer.headline1": { en: "You can find", ar: "يمكنك أن تجدني" },
   "footer.headline2": { en: "me here:", ar: "هنا:" },

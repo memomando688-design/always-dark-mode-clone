@@ -124,7 +124,7 @@ export function WelcomeModal() {
         </button>
 
         {/* Two-column grid on desktop: visual rail + message column */}
-        <div className="relative grid gap-6 p-6 pb-10 text-center sm:p-8 sm:pb-12 md:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] md:items-center md:gap-8 md:p-10 md:pb-14 md:text-start">
+        <div className="relative grid gap-6 p-6 pb-10 text-center sm:p-8 sm:pb-12 md:grid-cols-[minmax(0,12rem)_minmax(0,1fr)] md:items-center md:gap-8 md:p-10 md:pb-14 md:text-start">
           <div className="flex min-w-0 flex-col items-center gap-3 md:items-start">
             <LottieIcon
               src="/lottie/welcome-hello.lottie"
@@ -166,7 +166,7 @@ export function WelcomeModal() {
               </Link>
             </div>
 
-            <div className="mt-5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+            <div className="mt-5 flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
               <p className="eyebrow min-w-0 text-muted-foreground">{tr("welcome.footnote")}</p>
               <span
                 aria-live="polite"

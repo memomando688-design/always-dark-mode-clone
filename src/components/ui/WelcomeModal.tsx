@@ -105,7 +105,7 @@ export function WelcomeModal() {
         onMouseLeave={release}
         onFocusCapture={(event) => {
           // Ignore the initial programmatic focus on the close button.
-          if (event.target !== closeRef.current) hold();
+          if ((event.target as Node) !== closeRef.current) hold();
         }}
         onTouchStart={hold}
         onTouchEnd={release}
